@@ -32,4 +32,9 @@ kg_weight =((talents*20 + pounds)*32+lots)*0.0133
 gr_weight =1000.0*(kg_weight-int(kg_weight))
 print(f"The weight in modern units: \n {int(kg_weight)}kilograms and {gr_weight:2f}grams")
 
+ # Exercise 6
+ print(f"First combination of lock number{random.randint (0,9):03d}")
+ four_code = str(random.randint (1,6) + str(random.randint (1,6) + str(random.randint (1,6) + str(random.randint (1,6)
+   print("second combination of lock number" + four_code)
+
 
