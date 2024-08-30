@@ -1,4 +1,6 @@
 # exercise 1
+
+
 length_zander =float(input("Enter a length of zander in centimeters: "))
 size_limit = 42
 if size_limit >= length_zander :
@@ -7,7 +9,7 @@ difference = size_limit - length_zander
 print(f"THe difference is {difference :1f}centimeters below the limit")
 
 #exercise 2
-cabin_class =input("Enter a cabin class(LUX,A,B,C):").strip().upper()
+cabin_class =input("Enter a cabin class(LUX,A,B,C):").upper()
 if cabin_class == "LUX":
     print("upper_deck cabin with a balcony")
 elif cabin_class == "A":
@@ -21,7 +23,7 @@ else:
 
 
 # exercise 3
-gender = input("Enter your biological gender (male or female): ").strip().lower()
+gender = input("Enter your biological gender (male or female): ")
 hemoglobin = float(input("Enter your hemoglobin value (g/l): "))
 if gender == "female":
     if hemoglobin < 117:
@@ -40,10 +42,10 @@ elif gender == "male":
 
 # exercise 4
 year = int(input("Enter a year: "))
-if (year /4 == 0):
-    if(year % 100 == 0):
-        if(year % 400 == 0):
-            print(f"{year} is a leap year")
+if year%4 == 0 and (year%100 != 0  or year%400 == 0):
+    print(f"{year} is a leap year")
+else:
+    print(f"{year} is not a leap year")
 
 
 
