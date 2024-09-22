@@ -7,7 +7,7 @@ connection = mysql.connector.connect(
     host="127.0.0.1",
     port=3306,
     database = 'flight_game',
-    user = 'kumud',
+    user = 'root',
     password = 'Finland@123',
     autocommit = True
 )
@@ -52,67 +52,31 @@ connection = mysql.connector.connect(
     host="127.0.0.1",
     port=3306,
     database = 'flight_game',
-    user = 'kumud',
+    user = 'root',
     password = 'Finland@123',
     autocommit = True
 )
+
+drf get_airport_coordinates_by_icao_code(icao_code):
+sql = f"SELECT latitude_deg, longitude_deg FROM airport WHERE ident = '{icao_code}'
 cursor = connection.cursor()
+cursor.execute(sql)
+result = cursor.fetchall()
+return result
 
-if connection.is_connected():
-    print("Connected to MariaDB")
+icao_code_1 = input("Enter icao code for airport 1: ")
+coordinate_1 = get_airport_coordinates_by_icao_code(icao_code_1)
+icao_code_2 = input("Enter icao code for airport 2: ")
+coordinate_2 = get_airport_coordinates_by_icao_code(icao_code_2)
+print(f"The distant betwween 2 airport is {geopy.distance.geodesic(coordinate_1, coordinate_2).km:.0f}km")
 
-def main():
-    ICAO_CODE = input("Enter ICAO code: ").upper()
-    selectQuery = ("SELECT ap.latitude_deg as la_deg,ap.longitude_deg as lo_deg,c.name as country_name"
-                   "FROM airport ap"
-                   "join country c on ap.iso_country = c.iso_country"
-                   "where ap.ident = %s")
-    cursor.execute(selectQuery, (ICAO_CODE,))
-    result = cursor.fetchall()
 
-    ICAO_CODE2 =input("Enter ICAO code2: ").upper()
-    selectQuery2 = ("SELECT ap.latitude_deg as la_deg,ap.longitude_deg as lo_deg,c.name as country_name"
-                    "FROM airport ap"
-                    "join country c on ap.iso_country = c.iso_country"
-                    "where ap.ident = %s")
 
-    cursor.execute(selectQuery2, (ICAO_CODE2,))
-    result = cursor.fetchall()
 
-    location_1_map =""
-    location_2_map =""
-    location_1_name=""
-    location_2_name=""
 
-    if result:
-        first_row = result[0]
-        latitude_deg=first_row[0]
-        longitude_deg=first_row[1]
-        location_1_map = first_row[2]
 
-        location_2_map = (latitude_deg, longitude_deg)
-    else:
-        print(f"No data found for ICAO code {ICAO_CODE}")
 
-    if result:
-        first_row = result[0]
-        latitude_deg=first_row[0]
-        longitude_deg=first_row[1]
-        location_1_map = first_row[2]
-        location_2_map = (latitude_deg, longitude_deg)
-    else:
-        print(f"No data found for ICAO code {ICAO_CODE2}")
 
-    if location_1_map != "" location_2_map !="":
-        distance = geodesic(location_1_map, location_2_map).kilometers
-        print(f"Distance between {location_1_name} and {location_2_name} is {distance:.2f}km.")
-    else:
-        print("One or both locations are empty,cannot calculate distance.")
-
-        cursor.close()
-        connection.close()
-
-    main()
 
 
 
