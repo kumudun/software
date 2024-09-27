@@ -2,6 +2,7 @@
 # exercise 1
 
 import mysql.connector
+from geopy import distance
 
 connection = mysql.connector.connect(
     host="127.0.0.1",
