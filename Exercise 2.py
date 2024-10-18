@@ -1,8 +1,10 @@
 import random
 import math
 # Module 2
+# Exercise 1
 
-
+name =input("What is your name? :")
+print(f"Hello {name}!")
 
 # Exercise 2
 radius =float(input("what is your radius of the circle? "))
@@ -41,4 +43,6 @@ number5 = random.randint(1,6)
 number6 = random.randint(1,6)
 number7 = random.randint(1,6)
 print(f"second combination:{number4} ,{number5} ,{number6} ,{number7}")
+
+
 

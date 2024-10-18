@@ -1,4 +1,4 @@
-
+import geopy
 # exercise 1
 
 import mysql.connector
@@ -58,18 +58,23 @@ connection = mysql.connector.connect(
     autocommit = True
 )
 
-drf get_airport_coordinates_by_icao_code(icao_code):
-sql = f"SELECT latitude_deg, longitude_deg FROM airport WHERE ident = '{icao_code}'
-cursor = connection.cursor()
-cursor.execute(sql)
-result = cursor.fetchall()
-return result
+def get_airport_coordinates_by_icao_code(icao_code):
+    sql = f"SELECT latitude_deg, longitude_deg FROM airport WHERE ident = '{icao_code}'"
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
 
 icao_code_1 = input("Enter icao code for airport 1: ")
 coordinate_1 = get_airport_coordinates_by_icao_code(icao_code_1)
 icao_code_2 = input("Enter icao code for airport 2: ")
 coordinate_2 = get_airport_coordinates_by_icao_code(icao_code_2)
 print(f"The distant betwween 2 airport is {geopy.distance.geodesic(coordinate_1, coordinate_2).km:.0f}km")
+
+
+
+
+
 
 
 
